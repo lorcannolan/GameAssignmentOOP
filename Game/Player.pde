@@ -50,21 +50,18 @@ class Player
     println("Bottom of mover = " + (location.y + playerSize));
     println("x-coordinate = " + location.x);
     println("velocity.x, velocity.y" + velocity.x + " " + velocity.y);
-    if (keyPressed)
+    if (checkKey(UP) && location.y + playerSize == surfaceHeight)
     {
-      if (keyCode == UP && location.y + playerSize == surfaceHeight)
-      {
-        location.y -= 100;
-        velocity.add(acceleration);
-      }
-      else if (keyCode == LEFT)
-      {
-        location.x--;
-      }
-      else if (keyCode == RIGHT)
-      {
-        location.x++;
-      }
+      location.y -= 100;
+      velocity.add(acceleration);
+    }
+    else if (checkKey(LEFT))
+    {
+      location.x--;
+    }
+    else if (checkKey(RIGHT))
+    {
+      location.x++;
     }
   }
 }
