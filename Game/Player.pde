@@ -4,6 +4,7 @@ class Player
   float playerSize;
   PVector velocity;
   PVector acceleration;
+  float topspeed;
   
   Player(float x, float y, float playerSize)
   {
@@ -39,6 +40,30 @@ class Player
       if (location.y + playerSize > surfaceHeight)
       {
         location.y = surfaceHeight - playerSize;
+      }
+    }
+    if (location.y == surfaceHeight - playerSize)
+    {
+      velocity.set(0, 0);
+    }
+    println("Top left corner = " + location.y);
+    println("Bottom of mover = " + (location.y + playerSize));
+    println("x-coordinate = " + location.x);
+    println("velocity.x, velocity.y" + velocity.x + " " + velocity.y);
+    if (keyPressed)
+    {
+      if (keyCode == UP && location.y + playerSize == surfaceHeight)
+      {
+        location.y -= 100;
+        velocity.add(acceleration);
+      }
+      else if (keyCode == LEFT)
+      {
+        location.x--;
+      }
+      else if (keyCode == RIGHT)
+      {
+        location.x++;
       }
     }
   }
