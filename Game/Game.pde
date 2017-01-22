@@ -1,11 +1,13 @@
 Player player;
+Obstacle obstacle;
 
 void setup()
 {
-  //size(500, 500, P2D);
-  fullScreen(P2D);
-  player = new Player(width / 2, height / 2, width / 20);
-  surfaceHeight = height - height / 20; 
+  size(500, 500, P2D);
+  //fullScreen(P2D);
+  player = new Player(width / 2, height / 2, height / 20);
+  surfaceHeight = height - height / 20;
+  obstacle = new Obstacle();
 }
 
 float surfaceHeight;
@@ -21,6 +23,8 @@ void draw()
   
   player.display();
   player.update();
+  obstacle.display();
+  obstacle.update();
 }
 
 void keyPressed()

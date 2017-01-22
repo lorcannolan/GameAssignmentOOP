@@ -66,13 +66,13 @@ class Player
       location.x += width/250;
     }
     
-    if (location.x + playerSize < 0)
+    if (location.x <= 0)
     {
-      location.x = width;
+      location.x = 0;
     }
-    else if (location.x > width)
+    else if (location.x + playerSize >= width)
     {
-      location.x = 0 - playerSize;
+      location.x = width - playerSize;
     }
   }
 }
