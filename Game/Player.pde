@@ -4,7 +4,6 @@ class Player
   float playerSize;
   PVector velocity;
   PVector acceleration;
-  float topspeed;
   
   Player(float x, float y, float playerSize)
   {
@@ -33,15 +32,18 @@ class Player
     acceleration.setMag(.2);
     // velocity will change by adding value of acceleration PVector
     velocity.add(acceleration);
-    // Location changes by velocity
+    // If bottom of square is higher than the surface, apply downward force
     if (location.y + playerSize < surfaceHeight)
     {
       location.add(velocity);
+      // as the velocity will push bottom of square beyond the surface, set the
+      // position of the bottom of the square to the surface level
       if (location.y + playerSize > surfaceHeight)
       {
         location.y = surfaceHeight - playerSize;
       }
     }
+    // when the bottom of the square is at the surface height, reset the downward force
     if (location.y == surfaceHeight - playerSize)
     {
       velocity.set(0, 0);
@@ -50,18 +52,27 @@ class Player
     println("Bottom of mover = " + (location.y + playerSize));
     println("x-coordinate = " + location.x);
     println("velocity.x, velocity.y" + velocity.x + " " + velocity.y);
+    // player can only jump once when they are at the surface
     if (checkKey(UP) && location.y + playerSize == surfaceHeight)
     {
-      location.y -= 100;
-      velocity.add(acceleration);
+      location.y -= height/5;
     }
     else if (checkKey(LEFT))
     {
-      location.x--;
+      location.x -= width/250;
     }
     else if (checkKey(RIGHT))
     {
-      location.x++;
+      location.x += width/250;
+    }
+    
+    if (location.x + playerSize < 0)
+    {
+      location.x = width;
+    }
+    else if (location.x > width)
+    {
+      location.x = 0 - playerSize;
     }
   }
 }

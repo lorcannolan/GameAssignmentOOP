@@ -2,8 +2,9 @@ Player player;
 
 void setup()
 {
-  size(500, 500);
-  player = new Player(width / 2, height / 2, width / 10);
+  //size(500, 500, P2D);
+  fullScreen(P2D);
+  player = new Player(width / 2, height / 2, width / 20);
   surfaceHeight = height - height / 20; 
 }
 
