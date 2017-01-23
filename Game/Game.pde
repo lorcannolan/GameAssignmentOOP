@@ -23,6 +23,7 @@ void draw()
   
   player.display();
   player.update();
+  player.addVelocity();
   obstacle.display();
   obstacle.update();
 }

@@ -3,7 +3,11 @@ class Player
   PVector location;
   float playerSize;
   PVector velocity;
-  PVector acceleration;
+  float jumpForce = -(height/60);
+  float gravityDivisor = height * 3;
+  float gravity = height / gravityDivisor;
+  float speed = 3;
+  float speedSlowdown;
   
   Player(float x, float y, float playerSize)
   {
@@ -22,50 +26,58 @@ class Player
   
   void update()
   {
-    // Created a vector that has x value of location PVector and surfaceHeight value
-    PVector ground = new PVector(location.x, surfaceHeight);
-    // created a PVector with values of ground - location
-    // acceleration.x = (ground.x - location.x, i.e. 0)
-    // acceleration.y = (ground.y - location.y, i.e. 200)
-    PVector acceleration = PVector.sub(ground,location);
-    // set magnitude of acceleration
-    acceleration.setMag(.2);
-    // velocity will change by adding value of acceleration PVector
-    velocity.add(acceleration);
     // If bottom of square is higher than the surface, apply downward force
     if (location.y + playerSize < surfaceHeight)
     {
-      location.add(velocity);
-      // as the velocity will push bottom of square beyond the surface, set the
-      // position of the bottom of the square to the surface level
-      if (location.y + playerSize > surfaceHeight)
-      {
-        location.y = surfaceHeight - playerSize;
-      }
+      velocity.y += gravity;
     }
-    // when the bottom of the square is at the surface height, reset the downward force
-    if (location.y == surfaceHeight - playerSize)
+    // as the velocity will push bottom of square beyond the surface, set the
+    // position of the bottom of the square to the surface level
+    if (location.y + playerSize >= surfaceHeight)
     {
-      velocity.set(0, 0);
+      velocity.y = 0;
+      location.y = surfaceHeight - playerSize;
     }
     println("Top left corner = " + location.y);
     println("Bottom of mover = " + (location.y + playerSize));
     println("x-coordinate = " + location.x);
-    println("velocity.x, velocity.y" + velocity.x + " " + velocity.y);
+    println("velocity.x, velocity.y" + " " + velocity.x + " " + velocity.y);
     // player can only jump once when they are at the surface
     if (checkKey(UP) && location.y + playerSize == surfaceHeight)
     {
-      location.y -= height/5;
+      velocity.y += jumpForce;
     }
     else if (checkKey(LEFT))
     {
-      location.x -= width/250;
+      velocity.x = -speed;
     }
     else if (checkKey(RIGHT))
     {
-      location.x += width/250;
+      velocity.x = speed;
     }
     
+    // if player is in the air, the slowdown rate is higher due to less friction
+    if (location.y + playerSize >= surfaceHeight)
+    {
+      speedSlowdown = .65;
+      velocity.x *= speedSlowdown;
+      // when on the ground, if velocity.x is less than .25 in either direction, force stop!
+      if (velocity.x < 0.25 && velocity.x > 0)
+      {
+        velocity.x = 0;
+      }
+      else if (velocity.x > -0.25 && velocity.x < 0)
+      {
+        velocity.x = 0;
+      }
+    }
+    else if (location.y + playerSize < surfaceHeight)
+    {
+      speedSlowdown = .85;
+      velocity.x *= speedSlowdown;
+    }
+    
+    // boundaries for player
     if (location.x <= 0)
     {
       location.x = 0;
@@ -74,5 +86,11 @@ class Player
     {
       location.x = width - playerSize;
     }
+  }
+  
+  // change the velocity values
+  void addVelocity()
+  {
+    location.add(velocity);
   }
 }
