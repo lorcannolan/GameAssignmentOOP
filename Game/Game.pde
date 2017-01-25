@@ -5,7 +5,7 @@ void setup()
 {
   size(500, 500, P2D);
   //fullScreen(P2D);
-  player = new Player(width / 2, height / 2, height / 20);
+  player = new Player(0, height / 2, height / 20);
   surfaceHeight = height - height / 20;
   obstacle = new Obstacle();
 }
@@ -21,6 +21,7 @@ void draw()
   strokeWeight(2);
   line(0, surfaceHeight, width, surfaceHeight);
   
+  translate(-player.location.x + 20, 0);
   player.display();
   player.update();
   player.addVelocity();

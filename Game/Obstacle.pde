@@ -22,7 +22,7 @@ class Obstacle
   
   void update()
   {
-    location.x += speed;
+    /*location.x += speed;
     println("Speed = " + speed);
     if (location.x + obstacleSize/2 >= width)
     {
@@ -33,6 +33,6 @@ class Obstacle
     {
       location.x = 0 + obstacleSize/2;
       speed = -speed;
-    }
+    }*/
   }
 }
