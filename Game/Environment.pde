@@ -20,39 +20,39 @@ class Environment
    world = new boolean[numCellWidth][numCellHeight];
   }
   
-  void ground()
-  {
-    for (int row = 0 ; row < 1 ; row ++)
-    {
-      for (int col = 0 ; col < numCellWidth ; col ++)
-      {
-        float f = random(0, 1);
-        if (f > 0.5f)
-        {
-          world[row][col] = true;
-        }
-      }
-    }
-  }
+  //void ground()
+  //{
+  //  for (int row = 0 ; row < 1 ; row ++)
+  //  {
+  //    for (int col = 0 ; col < numCellWidth ; col ++)
+  //    {
+  //      float f = random(0, 1);
+  //      if (f > 0.5f)
+  //      {
+  //        world[row][col] = true;
+  //      }
+  //    }
+  //  }
+  //}
   
-  void displayGround()
-  {
-    for (int row = 0 ; row < 1 ; row ++)
-    {
-      for (int col = 0 ; col < numCellWidth ; col ++)
-      {
-        int x = cellWidth * col;
-        int y = cellHeight * row;
-        if (world[row][col])
-         {
-           fill(0, 255, 0);         
-         } 
-         else
-         {
-           fill(0);         
-         }
-         rect(x, y, cellWidth, cellHeight);
-      }
-    }
-  }
+  //void displayGround()
+  //{
+  //  for (int row = 0 ; row < 1 ; row ++)
+  //  {
+  //    for (int col = 0 ; col < numCellWidth ; col ++)
+  //    {
+  //      int x = cellWidth * col;
+  //      int y = cellHeight * row;
+  //      if (world[row][col])
+  //       {
+  //         fill(0, 255, 0);         
+  //       } 
+  //       else
+  //       {
+  //         fill(0);         
+  //       }
+  //       rect(x, y, cellWidth, cellHeight);
+  //    }
+  //  }
+  //}
 }

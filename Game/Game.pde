@@ -7,7 +7,7 @@ void setup()
 {
   size(500, 500, P2D);
   //fullScreen(P2D);
-  player = new Player(0, height / 2, height / 20);
+  player = new Player(0, height / 2, width / 20, height / 20);
   surfaceHeight = height - height / 20;
   obstacle = new Obstacle();
   world = new Environment(width * 2, height * 2, height / 10, height / 10);
@@ -45,8 +45,8 @@ void draw()
   player.addVelocity();
   obstacle.display();
   obstacle.update();
-  world.ground();
-  world.displayGround();
+  //world.ground();
+  //world.displayGround();
 }
 
 void keyPressed()

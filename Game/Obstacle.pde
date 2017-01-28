@@ -9,10 +9,11 @@ class Obstacle
   {
     //location = new PVector(width + width/10, surfaceHeight);
     //obstacleSize = height / 10;
-    picWidth = 179;
-    picHeight = 401;
-    location = new PVector(width/2, surfaceHeight - (picHeight - height / 2));
-    speed = 1;
+    picWidth = (height / 2.8) / 5;
+    picHeight = (width / 1.25) / 7;
+    //location = new PVector(width/2, surfaceHeight - picHeight);
+    location = new PVector(width, surfaceHeight - picHeight);
+    speed = height * 0.002;
   }
   
   void display()
@@ -20,19 +21,20 @@ class Obstacle
     stroke(127);
     fill(255, 0, 0);
     //triangle(location.x, location.y, (location.x - obstacleSize/2), surfaceHeight, (location.x + obstacleSize/2), surfaceHeight);
-    image(blue, location.x, location.y, picWidth - (width / 2), picHeight - (height / 2));
+    image(blue, location.x - picWidth, location.y, picWidth, picHeight);
+    //ellipse(location.x, location.y, 20, 20);
   }
   
   void update()
   {
     location.x += speed;
-    println("Speed = " + speed);
-    if (location.x >= width)
+    println("enemy location.x = " + location.x);
+    if (location.x - picWidth >= width)
     {
-      location.x = width;
+      location.x = width + picWidth;
       speed = -speed;
     }
-    else if (location.x<= 0)
+    else if (location.x <= 0)
     {
       location.x = 0;
       speed = -speed;
