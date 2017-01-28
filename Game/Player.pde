@@ -6,7 +6,7 @@ class Player
   float jumpForce = -(height/60);
   float gravityDivisor = height * 3;
   float gravity = height / gravityDivisor;
-  float speed = 3;
+  float speed = 1;
   float speedSlowdown;
   
   Player(float x, float y, float playerSize)
@@ -49,11 +49,11 @@ class Player
     }
     else if (checkKey(LEFT))
     {
-      velocity.x = -speed;
+      velocity.x -= speed;
     }
     else if (checkKey(RIGHT))
     {
-      velocity.x = speed;
+      velocity.x += speed;
     }
     
     // if player is in the air, the slowdown rate is higher due to less friction
@@ -73,18 +73,18 @@ class Player
     }
     else if (location.y + playerSize < surfaceHeight)
     {
-      speedSlowdown = .85;
+      speedSlowdown = .75;
       velocity.x *= speedSlowdown;
     }
     
     // boundaries for player
-    if (location.x <= 0)
+    if (location.x <= 0 - width / 2)
     {
-      location.x = 0;
+      location.x = 0 - width / 2;
     }
-    else if (location.x + playerSize >= width)
+    else if (location.x + playerSize >= width + width / 2)
     {
-      location.x = width - playerSize;
+      location.x = (width + width / 2) - playerSize;
     }
   }
   

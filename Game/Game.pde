@@ -1,5 +1,7 @@
 Player player;
 Obstacle obstacle;
+Environment world;
+PImage court, blue;
 
 void setup()
 {
@@ -8,6 +10,9 @@ void setup()
   player = new Player(0, height / 2, height / 20);
   surfaceHeight = height - height / 20;
   obstacle = new Obstacle();
+  world = new Environment(width * 2, height * 2, height / 10, height / 10);
+  court = loadImage("court.png");
+  blue = loadImage("blueMonstar.png");
 }
 
 float surfaceHeight;
@@ -19,14 +24,29 @@ void draw()
   
   stroke(0, 0, 255);
   strokeWeight(2);
-  line(0, surfaceHeight, width, surfaceHeight);
+  image(court, 0, height - height / 10, width, height / 10);
+  //line(0, surfaceHeight, width, surfaceHeight);
   
-  translate(-player.location.x + 20, 0);
+  if (player.location.x >= 0 && player.location.x <= width)
+  {
+    translate(-player.location.x + width / 2, 0);
+  }
+  else if (player.location.x < 0)
+  {
+    translate(width / 2, 0);
+  }
+  else if (player.location.x > width)
+  {
+    translate(-(width / 2), 0);
+  }
+  
   player.display();
   player.update();
   player.addVelocity();
   obstacle.display();
   obstacle.update();
+  world.ground();
+  world.displayGround();
 }
 
 void keyPressed()
