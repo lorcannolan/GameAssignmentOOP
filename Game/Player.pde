@@ -6,7 +6,8 @@ class Player
   float jumpForce = -(height/60);
   float gravityDivisor = height * 3;
   float gravity = height / gravityDivisor;
-  boolean picLeft = false;
+  float speed = width * 0.003;
+  int lives;
   
   Player(float x, float y, float playerWidth, float playerHeight)
   {
@@ -18,11 +19,7 @@ class Player
   
   void display()
   {
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
     image(standR, location.x, location.y, playerWidth, playerHeight);
-    //rect(location.x, location.y, playerWidth, playerHeight);
   }
   
   void update()
@@ -39,12 +36,15 @@ class Player
       velocity.y = 0;
       location.y = surfaceHeight - playerHeight;
     }
-    println("velocity.x, velocity.y" + " " + velocity.x + " " + velocity.y);
+    
     // player can only jump once when they are at the surface
     if (checkKey(UP) && location.y + playerHeight == surfaceHeight)
     {
       velocity.y += jumpForce;
     }
+    
+    location.x += speed;
+    println(location.x);
   }
   
   // change the velocity values

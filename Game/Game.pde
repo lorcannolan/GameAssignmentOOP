@@ -1,17 +1,17 @@
 Player player;
-Obstacle obstacle;
-PImage court, blue, standR, standL;
+Obstacle blue, green;
+PImage court, standR, standL;
 
 void setup()
 {
-  //size(500, 500, P2D);
+  //size(1000, 750, P2D);
   fullScreen(P2D);
   standL = loadImage("mjStanding.png");
   standR = loadImage("mjStandingRight.png");
   surfaceHeight = height - height / 20;
   player = new Player(0, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
-  blue = loadImage("blueMonstar.png");
-  obstacle = new Obstacle();
+  blue = new Blue();
+  green = new Green();
   court = loadImage("court.png");
 }
 
@@ -25,7 +25,6 @@ void draw()
   stroke(0, 0, 255);
   strokeWeight(2);
   image(court, 0, height - height / 10, width, height / 10);
-  //line(0, surfaceHeight, width, surfaceHeight);
   
   
   translate(-player.location.x + (width / 25), 0);
@@ -33,8 +32,10 @@ void draw()
   player.display();
   player.update();
   player.addVelocity();
-  obstacle.display();
-  obstacle.update();
+  blue.display();
+  blue.update();
+  green.display();
+  green.update();
 }
 
 void keyPressed()
