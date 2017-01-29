@@ -1,5 +1,5 @@
 Player player;
-Obstacle blue, green;
+Obstacle blue, green, red, orange, purple;
 PImage court, standR, standL;
 
 void setup()
@@ -12,6 +12,9 @@ void setup()
   player = new Player(width / 4, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
   blue = new Blue();
   green = new Green();
+  red = new Red();
+  orange = new Orange();
+  purple = new Purple();
   court = loadImage("court.png");
 }
 
@@ -30,6 +33,12 @@ void draw()
   blue.update();
   green.display();
   green.update();
+  red.display();
+  red.update();
+  orange.display();
+  orange.update();
+  purple.display();
+  purple.update();
 }
 
 void keyPressed()

@@ -18,10 +18,17 @@ class Green extends Obstacle
   void update()
   {
     location.x -= speed;
-    println("blue location.x = " + location.x);
+    println("green location.x = " + location.x);
     if (location.x + picWidth <= 0)
     {
       location.x = (width * 1.6) + picWidth;
+    }
+    
+    // check if green and red enemies are too close or intersecting
+    if (red.location.x - (location.x + picWidth) <= width / 4 && 
+                (red.location.x + red.picWidth) - location.x >= -(width / 4) )
+    {
+      location.x = red.location.x + red.picWidth + (width / 4);
     }
   }
 }
