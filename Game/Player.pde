@@ -6,9 +6,7 @@ class Player
   float jumpForce = -(height/60);
   float gravityDivisor = height * 3;
   float gravity = height / gravityDivisor;
-  float speed = height * 0.002;
-  float surfaceSlowdown = 0.65;
-  float airSlowdown = 0.7;
+  boolean picLeft = false;
   
   Player(float x, float y, float playerWidth, float playerHeight)
   {
@@ -23,7 +21,8 @@ class Player
     stroke(0);
     strokeWeight(2);
     fill(127);
-    rect(location.x, location.y, playerWidth, playerHeight);
+    image(standR, location.x, location.y, playerWidth, playerHeight);
+    //rect(location.x, location.y, playerWidth, playerHeight);
   }
   
   void update()
@@ -40,51 +39,11 @@ class Player
       velocity.y = 0;
       location.y = surfaceHeight - playerHeight;
     }
-    println("Top left corner = " + location.y);
-    println("Bottom of mover = " + (location.y + playerHeight));
-    println("x-coordinate = " + location.x);
     println("velocity.x, velocity.y" + " " + velocity.x + " " + velocity.y);
     // player can only jump once when they are at the surface
     if (checkKey(UP) && location.y + playerHeight == surfaceHeight)
     {
       velocity.y += jumpForce;
-    }
-    else if (checkKey(LEFT))
-    {
-      velocity.x -= speed;
-    }
-    else if (checkKey(RIGHT))
-    {
-      velocity.x += speed;
-    }
-    
-    // if player is in the air, the slowdown rate is higher due to less friction
-    if (location.y + playerHeight >= surfaceHeight)
-    {
-      velocity.x *= surfaceSlowdown;
-      // when on the ground, if velocity.x is less than .25 in either direction, force stop!
-      if (velocity.x < 0.25 && velocity.x > 0)
-      {
-        velocity.x = 0;
-      }
-      else if (velocity.x > -0.25 && velocity.x < 0)
-      {
-        velocity.x = 0;
-      }
-    }
-    else if (location.y + playerHeight < surfaceHeight)
-    {
-      velocity.x *= airSlowdown;
-    }
-    
-    // boundaries for player
-    if (location.x <= 0 - width / 2)
-    {
-      location.x = 0 - width / 2;
-    }
-    else if (location.x + playerWidth >= width + width / 2)
-    {
-      location.x = (width + width / 2) - playerWidth;
     }
   }
   
