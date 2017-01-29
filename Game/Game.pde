@@ -16,8 +16,10 @@ void setup()
   orange = new Orange();
   purple = new Purple();
   court = loadImage("court.png");
+  score = 0;
 }
 
+int score;
 float surfaceHeight;
 boolean[] keys = new boolean[1000];
 
@@ -25,20 +27,31 @@ void draw()
 {
   background(255);
   image(court, 0, height - height / 10, width, height / 10);
+  fill(0);
+  textAlign(CENTER);
+  textSize(50);
+  text("Score: " + score, width/2, height / 20);
   
   player.display();
   player.update();
   player.addVelocity();
-  blue.display();
-  blue.update();
-  green.display();
-  green.update();
-  red.display();
-  red.update();
-  orange.display();
-  orange.update();
-  purple.display();
-  purple.update();
+  
+  if (score >= 0 && score < 11)
+  {
+    red.display();
+    red.update();
+    orange.display();
+    orange.update();
+  }
+  else
+  {
+    blue.display();
+    blue.update();
+    green.display();
+    green.update();
+    purple.display();
+    purple.update();
+  }
 }
 
 void keyPressed()

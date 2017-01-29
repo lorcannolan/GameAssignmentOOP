@@ -6,7 +6,7 @@ class Purple extends Obstacle
   {
     picWidth = (width / 2.8) / 4;
     picHeight = (height / 1.25) / 5.5;
-    location = new PVector(width * 2, surfaceHeight - picHeight);
+    location = new PVector(width * 1.6, surfaceHeight - picHeight);
     purpleMon = loadImage("purpleMonstar.png");
   }
   
@@ -21,7 +21,7 @@ class Purple extends Obstacle
     println("red location.x = " + location.x);
     if (location.x + picWidth <= 0)
     {
-      location.x = (width * 2) + picWidth;
+      location.x = (width * 1.6) + picWidth;
     }
     
     // check if purple and blue enemies are too close or intersecting
