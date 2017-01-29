@@ -6,7 +6,8 @@ class Player
   float jumpForce = -(height/60);
   float gravityDivisor = height * 3;
   float gravity = height / gravityDivisor;
-  float speed = width * 0.003;
+  float speed = width * 0.0003;
+  float slowdown = 0.85;
   int lives;
   
   Player(float x, float y, float playerWidth, float playerHeight)
@@ -42,9 +43,26 @@ class Player
     {
       velocity.y += jumpForce;
     }
+    else if (checkKey(LEFT) && location.x >= 0)
+    {
+      velocity.x -= speed;
+    }
+    else if (checkKey(RIGHT) && location.x + playerWidth <= width / 2)
+    {
+      velocity.x += speed;
+    }
+    velocity.x *= slowdown;
     
-    location.x += speed;
-    println(location.x);
+    if (velocity.x < 0.25 && velocity.x > 0)
+    {
+      velocity.x = 0;
+    }
+    
+    //if (location.x + (playerWidth * .4) >= blue.location.x + (blue.picWidth * .3) &&
+    //      location.x + (playerWidth * .9) <= blue.location.x + (blue.picWidth * .5))
+    //{
+    //  velocity.y += (jumpForce / 2);
+    //}
   }
   
   // change the velocity values

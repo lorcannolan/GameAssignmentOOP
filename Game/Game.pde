@@ -21,13 +21,7 @@ boolean[] keys = new boolean[1000];
 void draw()
 {
   background(255);
-  
-  stroke(0, 0, 255);
-  strokeWeight(2);
   image(court, 0, height - height / 10, width, height / 10);
-  
-  
-  translate(-player.location.x + (width / 25), 0);
   
   player.display();
   player.update();

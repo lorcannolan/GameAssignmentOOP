@@ -17,10 +17,11 @@ class Green extends Obstacle
   
   void update()
   {
+    location.x -= speed;
     println("blue location.x = " + location.x);
-    if (location.x + picWidth + (width / 25) <= player.location.x)
+    if (location.x + picWidth <= 0)
     {
-      location.x = player.location.x + (width * 1.6) + picWidth;
+      location.x = (width * 1.6) + picWidth;
     }
   }
 }
