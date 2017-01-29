@@ -9,7 +9,7 @@ void setup()
   standL = loadImage("mjStanding.png");
   standR = loadImage("mjStandingRight.png");
   surfaceHeight = height - height / 20;
-  player = new Player(0, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
+  player = new Player(width / 4, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
   blue = new Blue();
   green = new Green();
   court = loadImage("court.png");

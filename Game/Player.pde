@@ -46,10 +46,20 @@ class Player
     else if (checkKey(LEFT) && location.x >= 0)
     {
       velocity.x -= speed;
+      if (location.x < 0)
+      {
+        velocity.x = 0;
+        location.x = 0;
+      }
     }
     else if (checkKey(RIGHT) && location.x + playerWidth <= width / 2)
     {
       velocity.x += speed;
+      if (location.x > width / 2)
+      {
+        velocity.x = 0;
+        location.x = width / 2;
+      }
     }
     velocity.x *= slowdown;
     
@@ -58,10 +68,17 @@ class Player
       velocity.x = 0;
     }
     
+    // jump on heads funtionality
     //if (location.x + (playerWidth * .4) >= blue.location.x + (blue.picWidth * .3) &&
     //      location.x + (playerWidth * .9) <= blue.location.x + (blue.picWidth * .5))
     //{
     //  velocity.y += (jumpForce / 2);
+    //}
+    
+    // collision check with enemies
+    //if (location.x + (playerWidth * 0.9) >= blue.location.x + (blue.picWidth * .2))
+    //{
+    //  noLoop();
     //}
   }
   

@@ -6,7 +6,7 @@ class Obstacle
   
   Obstacle()
   {
-    this.speed = width * 0.003;
+    this.speed = width * 0.002;
   }
   
   void display()
