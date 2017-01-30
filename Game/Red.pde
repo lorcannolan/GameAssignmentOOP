@@ -30,23 +30,5 @@ class Red extends Obstacle
     {
       location.x = blue.location.x + blue.picWidth + (width / 4);
     }
-    
-    // check if player has jumped over enemy
-    if (location.x + picWidth < player.location.x)
-    {
-      beyond = 1;
-    }
-    else 
-    {
-      beyond = 0;
-      check = beyond;
-    }
-    
-    // update score
-    if (beyond == 1 && beyond != check)
-    {
-      score += 1;
-      check = beyond;
-    }
   }
 }

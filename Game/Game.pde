@@ -40,8 +40,10 @@ void draw()
   {
     red.display();
     red.update();
+    red.updateScore();
     orange.display();
     orange.update();
+    orange.updateScore();
   }
   else
   {
