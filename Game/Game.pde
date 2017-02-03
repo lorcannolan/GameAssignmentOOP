@@ -12,13 +12,7 @@ void setup()
   surfaceHeight = height - height / 20;
   player = new Player(width / 4, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
   level = new Progression();
-  //blue = new Blue();
-  //green = new Green();
-  //red = new Red();
-  //orange = new Orange();
-  //purple = new Purple();
   enemies = new ArrayList<Obstacle>();
-  //setupObstacles();
   court = loadImage("court.png");
   score = 0;
 }
@@ -52,52 +46,11 @@ void draw()
   level.wave1();
   level.wave2();
   level.wave3();
+  level.wave4();
+  level.wave5();
   
   println("size of ArrayList = " + enemies.size());
-  
-  //if (score >= 0 && score < 11)
-  //{
-  //  red.display();
-  //  red.update();
-  //  red.updateScore();
-  //  orange.display();
-  //  orange.update();
-  //  orange.updateScore();
-  //}
-  //else
-  //{
-  //  blue.display();
-  //  blue.update();
-  //  green.display();
-  //  green.update();
-  //  purple.display();
-  //  purple.update();
-  //}
 }
-
-//void setupObstacles()
-//{
-//  enemies.clear();
-//  for (int i = 0 ; i < 5 ; i ++)
-//  {
-//    // add a certain type of sub-class of Obstacle to the ArrayList depending on the score 
-//    Obstacle e = null;
-//    e = new Red();
-//    //switch (score)
-//    //{
-//    //  case 0:
-//    //    a = new Dog();
-//    //    break;
-//    //  case 1:
-//    //    a = new Cat();
-//    //    break;
-//    //  case 2:
-//    //    a = new Sheep();
-//    //    break;
-//    //}
-//    enemies.add(e);
-//  }
-//}
 
 void keyPressed()
 { 
