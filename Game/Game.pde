@@ -4,17 +4,19 @@ PImage court, standR, standL;
 
 void setup()
 {
-  //size(1000, 750, P2D);
-  fullScreen(P2D);
+  size(1000, 750, P2D);
+  //fullScreen(P2D);
   standL = loadImage("mjStanding.png");
   standR = loadImage("mjStandingRight.png");
   surfaceHeight = height - height / 20;
   player = new Player(width / 4, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
-  blue = new Blue();
-  green = new Green();
-  red = new Red();
-  orange = new Orange();
-  purple = new Purple();
+  //blue = new Blue();
+  //green = new Green();
+  //red = new Red();
+  //orange = new Orange();
+  //purple = new Purple();
+  enemies = new ArrayList<Obstacle>();
+  //setupObstacles();
   court = loadImage("court.png");
   score = 0;
 }
@@ -22,6 +24,7 @@ void setup()
 int score;
 float surfaceHeight;
 boolean[] keys = new boolean[1000];
+ArrayList<Obstacle> enemies;
 
 void draw()
 {
@@ -36,25 +39,85 @@ void draw()
   player.update();
   player.addVelocity();
   
-  if (score >= 0 && score < 11)
+  for (int i = enemies.size() -1 ; i >= 0  ; i --)
   {
-    red.display();
-    red.update();
-    red.updateScore();
-    orange.display();
-    orange.update();
-    orange.updateScore();
+    Obstacle e = enemies.get(i);
+    e.display();
+    e.update();
+    e.updateScore();
   }
-  else
+  
+  if (score < 5)
   {
-    blue.display();
-    blue.update();
-    green.display();
-    green.update();
-    purple.display();
-    purple.update();
+    if (frameCount % 150 == 0)
+    {
+      Obstacle red = new Red();
+      enemies.add(red);
+    }
   }
+  else if (score > 5)
+  {
+    if (frameCount % 150 == 0)
+    {
+      Obstacle red = new Red();
+      enemies.add(red);
+      Obstacle orange = new Orange();
+      enemies.add(orange);
+      
+      //check if locations are too close or intersecting
+      if (red.location.x - (orange.location.x + orange.picWidth) <= width / 4 && 
+                (red.location.x + red.picWidth) - orange.location.x >= -(width / 4) )
+      {
+        orange.location.x = red.location.x + red.picWidth + (width / 4);
+      }
+    }
+  }
+  
+  println("size of ArrayList = " + enemies.size());
+  
+  //if (score >= 0 && score < 11)
+  //{
+  //  red.display();
+  //  red.update();
+  //  red.updateScore();
+  //  orange.display();
+  //  orange.update();
+  //  orange.updateScore();
+  //}
+  //else
+  //{
+  //  blue.display();
+  //  blue.update();
+  //  green.display();
+  //  green.update();
+  //  purple.display();
+  //  purple.update();
+  //}
 }
+
+//void setupObstacles()
+//{
+//  enemies.clear();
+//  for (int i = 0 ; i < 5 ; i ++)
+//  {
+//    // add a certain type of sub-class of Obstacle to the ArrayList depending on the score 
+//    Obstacle e = null;
+//    e = new Red();
+//    //switch (score)
+//    //{
+//    //  case 0:
+//    //    a = new Dog();
+//    //    break;
+//    //  case 1:
+//    //    a = new Cat();
+//    //    break;
+//    //  case 2:
+//    //    a = new Sheep();
+//    //    break;
+//    //}
+//    enemies.add(e);
+//  }
+//}
 
 void keyPressed()
 { 
