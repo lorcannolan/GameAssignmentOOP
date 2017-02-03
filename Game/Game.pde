@@ -1,5 +1,6 @@
 Player player;
 Obstacle blue, green, red, orange, purple;
+Progression level;
 PImage court, standR, standL;
 
 void setup()
@@ -10,6 +11,7 @@ void setup()
   standR = loadImage("mjStandingRight.png");
   surfaceHeight = height - height / 20;
   player = new Player(width / 4, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
+  level = new Progression();
   //blue = new Blue();
   //green = new Green();
   //red = new Red();
@@ -47,31 +49,9 @@ void draw()
     e.updateScore();
   }
   
-  if (score < 5)
-  {
-    if (frameCount % 150 == 0)
-    {
-      Obstacle red = new Red();
-      enemies.add(red);
-    }
-  }
-  else if (score > 5)
-  {
-    if (frameCount % 150 == 0)
-    {
-      Obstacle red = new Red();
-      enemies.add(red);
-      Obstacle orange = new Orange();
-      enemies.add(orange);
-      
-      //check if locations are too close or intersecting
-      if (red.location.x - (orange.location.x + orange.picWidth) <= width / 4 && 
-                (red.location.x + red.picWidth) - orange.location.x >= -(width / 4) )
-      {
-        orange.location.x = red.location.x + red.picWidth + (width / 4);
-      }
-    }
-  }
+  level.wave1();
+  level.wave2();
+  level.wave3();
   
   println("size of ArrayList = " + enemies.size());
   
