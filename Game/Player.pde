@@ -8,7 +8,7 @@ class Player
   float gravity = height / gravityDivisor;
   float speed = width * 0.0003;
   float slowdown = 0.85;
-  int lives;
+  int counter;
   
   Player(float x, float y, float playerWidth, float playerHeight)
   {
@@ -16,22 +16,31 @@ class Player
     this.playerWidth = playerWidth;
     this.playerHeight = playerHeight;
     velocity = new PVector(0,0);
+    this.counter = 0;
   }
   
   void display()
   {
-    image(standR, location.x, location.y, playerWidth, playerHeight);
+    image(running[counter], location.x, location.y, playerWidth, playerHeight);
+    if (frameCount % 30 == 0)
+    {
+      counter ++;
+      if (counter>1) 
+      {
+        counter = 0;
+      }
+    }
   }
   
   void update()
-  {
-    // If bottom of square is higher than the surface, apply downward force
+  { 
+    // If bottom of player is higher than the surface, apply downward force
     if (location.y + playerHeight < surfaceHeight)
     {
       velocity.y += gravity;
     }
-    // as the velocity will push bottom of square beyond the surface, set the
-    // position of the bottom of the square to the surface level
+    // as the velocity will push bottom of player beyond the surface, set the
+    // position of the bottom of the player to the surface level
     if (location.y + playerHeight >= surfaceHeight)
     {
       velocity.y = 0;
@@ -45,7 +54,7 @@ class Player
     }
     else if (checkKey(LEFT) && location.x >= 0)
     {
-      velocity.x -= speed;
+      velocity.x -= speed / 2;
       if (location.x < 0)
       {
         velocity.x = 0;

@@ -2,15 +2,18 @@ Player player;
 Obstacle blue, green, red, orange, purple;
 Progression level;
 PImage court, standR, standL;
+PImage[] running = new PImage[2];
 
 void setup()
 {
-  size(1000, 750, P2D);
-  //fullScreen(P2D);
+  //size(1000, 750, P2D);
+  fullScreen(P2D);
   standL = loadImage("mjStanding.png");
   standR = loadImage("mjStandingRight.png");
+  running[0] = loadImage("run1.png");
+  running[1] = loadImage("run2.png");
   surfaceHeight = height - height / 20;
-  player = new Player(width / 4, height / 2, (width / 2.8) / 8, (height / 1.25) / 6);
+  player = new Player(width / 4, height / 2, width / 21, height / 9.6);
   level = new Progression();
   enemies = new ArrayList<Obstacle>();
   court = loadImage("court.png");
@@ -50,6 +53,9 @@ void draw()
   level.wave5();
   
   println("size of ArrayList = " + enemies.size());
+  
+  noFill();
+  rect(player.location.x, player.location.y, player.playerWidth, player.playerHeight);
 }
 
 void keyPressed()
