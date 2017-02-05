@@ -6,7 +6,7 @@ class Green extends Obstacle
   {
     picWidth = (width / 2.8) / 4;
     picHeight = (height / 1.25) / 5;
-    location = new PVector(width * 1.2, surfaceHeight - picHeight);
+    location = new PVector(width * 0.6, surfaceHeight - picHeight);
     greenMon = loadImage("greenMonstar.png");
   }
   
@@ -24,4 +24,5 @@ class Green extends Obstacle
       enemies.remove(this);
     }
   }
+  
 }

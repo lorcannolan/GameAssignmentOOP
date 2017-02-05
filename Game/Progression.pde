@@ -12,8 +12,16 @@ class Progression
     {
       if (frameCount % 200 == 0)
       {
-        Obstacle red = new Red();
-        enemies.add(red);
+        //Obstacle red = new Red();
+        //enemies.add(red);
+        //Obstacle orange = new Orange();
+        //enemies.add(orange);
+        //Obstacle purple = new Purple();
+        //enemies.add(purple);
+        //Obstacle green = new Green();
+        //enemies.add(green);
+        Obstacle blue = new Blue();
+        enemies.add(blue);
       }
     }
   }

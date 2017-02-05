@@ -24,4 +24,17 @@ class Purple extends Obstacle
       enemies.remove(this);
     }
   }
+  
+  // when a purple enemy hits the player
+  void playerCollision()
+  {
+    if (player.topRightBody.x >= location.x && player.bottomRightBody.y >= location.y)
+    {
+      // to account for the purple monster's triangular shape
+      if (player.bottomLeftBody.y >= location.y + (picWidth * 0.5) && player.topLeftBody.x < location.x + picWidth)
+      {
+        noLoop();
+      }
+    }
+  }
 }
