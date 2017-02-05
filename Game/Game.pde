@@ -53,9 +53,6 @@ void draw()
   level.wave5();
   
   println("size of ArrayList = " + enemies.size());
-  
-  noFill();
-  rect(player.location.x, player.location.y, player.playerWidth, player.playerHeight);
 }
 
 void keyPressed()
