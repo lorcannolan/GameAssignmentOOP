@@ -26,15 +26,15 @@ class Orange extends Obstacle
   }
   
   // when an orange enemy hits the player
-  //void playerCollision()
-  //{
-  //  if (player.topRightBody.x >= location.x && player.bottomRightBody.y >= location.y
-  //        && player.bottomLeftBody.y >= location.y)
-  //  {
-  //    if (player.topLeftBody.x < location.x + picWidth)
-  //    {
-  //      noLoop();
-  //    }
-  //  }
-  //}
+  void playerCollision()
+  {
+    if (player.topRightBody.x >= location.x && player.bottomRightBody.y >= location.y
+          && player.bottomLeftBody.y >= location.y)
+    {
+      if (player.bottomLeftBody.y >= location.y + (picWidth * 0.05) && player.topLeftBody.x < location.x + picWidth)
+      {
+        noLoop();
+      }
+    }
+  }
 }

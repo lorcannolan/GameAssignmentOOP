@@ -26,15 +26,15 @@ class Red extends Obstacle
   }
   
   // when a red enemy hits the player
-  //void playerCollision()
-  //{
-  //  if (player.topRightBody.x >= location.x && player.bottomRightBody.y >= location.y
-  //        && player.bottomLeftBody.y >= location.y)
-  //  {
-  //    if (player.topLeftBody.x < location.x + picWidth)
-  //    {
-  //      noLoop();
-  //    }
-  //  }
-  //}
+  void playerCollision()
+  {
+    if (player.topRightBody.x >= location.x + picHeight * 0.05 && player.bottomRightBody.y >= location.y
+          && player.bottomLeftBody.y >= location.y)
+    {
+      if (player.topLeftBody.x < location.x + picWidth)
+      {
+        noLoop();
+      }
+    }
+  }
 }

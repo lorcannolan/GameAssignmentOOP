@@ -28,10 +28,10 @@ class Purple extends Obstacle
   // when a purple enemy hits the player
   void playerCollision()
   {
-    if (player.topRightBody.x >= location.x && player.bottomRightBody.y >= location.y)
+    if (player.topRightBody.x >= location.x + picHeight * 0.1 && player.bottomRightBody.y >= location.y)
     {
       // to account for the purple monster's triangular shape
-      if (player.bottomLeftBody.y >= location.y + (picWidth * 0.5) && player.topLeftBody.x < location.x + picWidth)
+      if (player.bottomLeftBody.y >= location.y + (picWidth * 0.25) && player.topLeftBody.x < location.x + picWidth * 0.85)
       {
         noLoop();
       }

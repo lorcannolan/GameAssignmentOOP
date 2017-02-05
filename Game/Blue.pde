@@ -6,7 +6,7 @@ class Blue extends Obstacle
   {
     picWidth = (width / 2.8) / 6;
     picHeight = (height / 1.25) / 4;
-    location = new PVector(width * 0.6, surfaceHeight - picHeight);
+    location = new PVector(width * 1.2, surfaceHeight - picHeight);
     blueMon = loadImage("blueMonstar.png");
   }
   

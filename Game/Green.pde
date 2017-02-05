@@ -25,4 +25,16 @@ class Green extends Obstacle
     }
   }
   
+  // when a green enemy hits the player
+  void playerCollision()
+  {
+    if (player.topRightBody.x >= location.x + picHeight * 0.05 && player.bottomRightBody.y >= location.y
+          && player.bottomLeftBody.y >= location.y)
+    {
+      if (player.bottomLeftBody.y >= location.y + (picWidth * 0.05) && player.topLeftBody.x < location.x + picWidth)
+      {
+        noLoop();
+      }
+    }
+  }
 }
