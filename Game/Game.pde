@@ -37,6 +37,7 @@ void draw()
   player.display();
   player.update();
   player.addVelocity();
+  player.assignCollisionPoints();
   
   for (int i = enemies.size() -1 ; i >= 0  ; i --)
   {
@@ -44,6 +45,7 @@ void draw()
     e.display();
     e.update();
     e.updateScore();
+    e.playerCollision();
   }
   
   level.wave1();

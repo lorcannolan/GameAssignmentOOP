@@ -1,8 +1,8 @@
 class Player
 {
-  PVector location;
+  PVector location, velocity;
+  PVector topLeftBody, bottomLeftBody, topRightBody, bottomRightBody;
   float playerWidth, playerHeight;
-  PVector velocity;
   float jumpForce = -(height/60);
   float gravityDivisor = height * 3;
   float gravity = height / gravityDivisor;
@@ -24,7 +24,7 @@ class Player
     if (location.y + playerHeight == surfaceHeight)
     {
       image(running[counter], location.x, location.y, playerWidth, playerHeight);
-      if (frameCount % 30 == 0)
+      if (frameCount % 20 == 0)
       {
         counter ++;
         if (counter>1) 
@@ -83,24 +83,22 @@ class Player
     {
       velocity.x = 0;
     }
-    
-    // jump on heads funtionality
-    //if (location.x + (playerWidth * .4) >= blue.location.x + (blue.picWidth * .3) &&
-    //      location.x + (playerWidth * .9) <= blue.location.x + (blue.picWidth * .5))
-    //{
-    //  velocity.y += (jumpForce / 2);
-    //}
-    
-    // collision check with enemies
-    //if (location.x + (playerWidth * 0.9) >= blue.location.x + (blue.picWidth * .2))
-    //{
-    //  noLoop();
-    //}
   }
   
   // change the velocity values
   void addVelocity()
   {
     location.add(velocity);
+  }
+  
+  void assignCollisionPoints()
+  {
+    topLeftBody = new PVector(location.x + (playerWidth * 0.125), location.y + (playerHeight * 0.35));
+    bottomLeftBody = new PVector(topLeftBody.x, location.y + (playerHeight * 0.85));
+    topRightBody = new PVector(location.x + (playerWidth * 0.85), topLeftBody.y);
+    bottomRightBody = new PVector(topRightBody.x, location.y + (playerHeight * 0.925));
+    println("bottomRightBody.y = " + bottomRightBody.y);
+    println("surfaceHeight = " + surfaceHeight);
+    println("bottom of player = " + (location.y + playerHeight));
   }
 }

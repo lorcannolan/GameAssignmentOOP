@@ -39,4 +39,8 @@ class Obstacle
       check = beyond;
     }
   }
+  
+  void playerCollision()
+  {
+  }
 }
