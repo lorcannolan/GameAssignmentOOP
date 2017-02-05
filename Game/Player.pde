@@ -16,19 +16,26 @@ class Player
     this.playerWidth = playerWidth;
     this.playerHeight = playerHeight;
     velocity = new PVector(0,0);
-    this.counter = 0;
+    this.counter = 1;
   }
   
   void display()
   {
-    image(running[counter], location.x, location.y, playerWidth, playerHeight);
-    if (frameCount % 30 == 0)
+    if (location.y + playerHeight == surfaceHeight)
     {
-      counter ++;
-      if (counter>1) 
+      image(running[counter], location.x, location.y, playerWidth, playerHeight);
+      if (frameCount % 30 == 0)
       {
-        counter = 0;
+        counter ++;
+        if (counter>1) 
+        {
+          counter = 0;
+        }
       }
+    }
+    else if (location.y + playerHeight < surfaceHeight)
+    {
+      image(running[0], location.x, location.y, playerWidth, playerHeight);
     }
   }
   
