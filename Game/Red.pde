@@ -1,6 +1,7 @@
 class Red extends Obstacle
 {
   PImage redMon;
+  boolean moveDown, moveUp;
   
   Red()
   {
@@ -22,6 +23,28 @@ class Red extends Obstacle
     if (location.x + picWidth <= 0)
     {
       enemies.remove(this);
+    }
+    
+    // move red enemy up and down
+    if (location.y <= surfaceHeight - (picHeight * 2))
+    {
+      moveUp = false;
+      moveDown = true;
+    }
+    else if (location.y + picHeight >= surfaceHeight)
+    {
+      moveUp = true;
+      moveDown = false;
+    }
+    
+    // only move when score is higher than 13
+    if (moveUp && score > 13)
+    {
+      location.y -= 3;
+    }
+    else if (moveDown && score > 13)
+    {
+      location.y += 3;
     }
   }
   

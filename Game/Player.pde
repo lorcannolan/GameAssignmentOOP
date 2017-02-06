@@ -4,7 +4,7 @@ class Player
   PVector topLeftBody, bottomLeftBody, topRightBody, bottomRightBody;
   float playerWidth, playerHeight;
   float jumpForce = -(height/60);
-  float gravityDivisor = height * 3;
+  float gravityDivisor = height * 2.5;
   float gravity = height / gravityDivisor;
   float speed = width * 0.0003;
   float slowdown = 0.85;
