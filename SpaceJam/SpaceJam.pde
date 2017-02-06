@@ -1,6 +1,6 @@
 Player player;
 Progression level;
-SecretStuff slow;
+SecretStuff slow, test;
 PImage court;
 PImage[] running = new PImage[2];
 
