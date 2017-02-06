@@ -83,6 +83,16 @@ class Player
     {
       velocity.x = 0;
     }
+    
+    // if michael's secret stuff is collected
+    if (quick.collected)
+    {
+      player.speed = width * 0.0006;
+    }
+    else
+    {
+      player.speed = width * 0.0003;
+    }
   }
   
   // change the velocity values
@@ -97,8 +107,5 @@ class Player
     bottomLeftBody = new PVector(topLeftBody.x, location.y + (playerHeight * 0.85));
     topRightBody = new PVector(location.x + (playerWidth * 0.85), topLeftBody.y);
     bottomRightBody = new PVector(topRightBody.x, location.y + (playerHeight * 0.925));
-    println("bottomRightBody.y = " + bottomRightBody.y);
-    println("surfaceHeight = " + surfaceHeight);
-    println("bottom of player = " + (location.y + playerHeight));
   }
 }

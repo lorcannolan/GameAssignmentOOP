@@ -1,25 +1,26 @@
 Player player;
 Progression level;
-SecretStuff slow, test;
+SecretStuff quick;
 PImage court;
 PImage[] running = new PImage[2];
 
 void setup()
 {
-  //size(1000, 750, P2D);
-  fullScreen(P2D);
+  size(1000, 750, P2D);
+  //fullScreen(P2D);
   running[0] = loadImage("run1.png");
   running[1] = loadImage("run2.png");
   surfaceHeight = height - height / 20;
   player = new Player(width / 4, height / 2, width / 21, height / 9.6);
   level = new Progression();
   enemies = new ArrayList<Obstacle>();
-  slow = new SecretStuff(width * 5, height * 0.6);
+  quick = new SecretStuff(width * 4, height * 0.6);
   court = loadImage("court.png");
   score = 0;
+  sStuffCountdown = 3;
 }
 
-int score;
+int score, sStuffCountdown;
 float surfaceHeight;
 boolean[] keys = new boolean[1000];
 ArrayList<Obstacle> enemies;
@@ -38,8 +39,9 @@ void draw()
   player.addVelocity();
   player.assignCollisionPoints();
   
-  slow.display();
-  slow.update();
+  quick.display();
+  quick.update();
+  quick.playerCollision();
 
   for (int i = enemies.size() - 1; i >= 0; i --)
   {
@@ -57,8 +59,7 @@ void draw()
   level.wave5();
   level.changeFrame();
 
-  println("size of ArrayList = " + enemies.size());
-  println("enemy frame count = " + level.frameC);
+  println("secretStuff.locatio.x = " + quick.location.x);
 }
 
 void keyPressed()

@@ -9,4 +9,5 @@ abstract class PowerUp
   
   abstract void display();
   abstract void update();
+  abstract void playerCollision();
 }

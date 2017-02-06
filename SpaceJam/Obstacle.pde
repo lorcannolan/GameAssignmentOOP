@@ -7,23 +7,7 @@ class Obstacle
   
   Obstacle()
   {
-    //if (score < 13)
-    //{
     this.speed = width * 0.002;
-    //}
-    //else if (score > 13)
-    //{
-    //  this.speed = width * 0.003;
-    //}
-    //else if (score > 20)
-    //{
-    //  this.speed = width * 0.004;
-    //}
-    //else if (score > 30)
-    //{
-    //  this.speed = width * 0.005;
-    //}
-    
     beyond = check;
   }
   
@@ -53,6 +37,19 @@ class Obstacle
     {
       score += 1;
       check = beyond;
+      // michael's secret stuff powerup only lasts 3 scores
+      if (quick.collected)
+      {
+        if (sStuffCountdown > 0)
+        {
+          sStuffCountdown -= 1;
+          if (sStuffCountdown == 0)
+          {
+            quick.collected = false;
+            sStuffCountdown = 3;
+          }
+        }
+      }
     }
   }
 

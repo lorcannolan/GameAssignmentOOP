@@ -41,7 +41,6 @@ class Progression
         }
       }
     }
-    println("r = " + r);
   }
   
   void wave3()
