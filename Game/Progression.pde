@@ -1,19 +1,21 @@
 class Progression
 {
   float r;
+  int frameC;
   
   Progression()
   {
+    this.frameC = 200;
   }
   
   void wave1()
   {
     if (score < 3)
     {
-      if (frameCount % 200 == 0)
+      if (frameCount % frameC == 0)
       {
-        Obstacle green = new Green();
-        enemies.add(green);
+        Obstacle red = new Red();
+        enemies.add(red);
       }
     }
   }
@@ -22,7 +24,7 @@ class Progression
   {
     if (score > 2 && score < 6)
     {
-      if (frameCount % 200 == 0)
+      if (frameCount % frameC == 0)
       {
         r = random(0, 1);
         if (r > .5)
@@ -44,7 +46,7 @@ class Progression
   {
     if (score > 5 && score < 9)
     {
-      if (frameCount % 200 == 0)
+      if (frameCount % frameC == 0)
       {
         r = random(0, 1);
         if (r > 0.66666)
@@ -70,7 +72,7 @@ class Progression
   {
     if (score > 8 && score < 12)
     {
-      if (frameCount % 200 == 0)
+      if (frameCount % frameC == 0)
       {
         r = random(0, 1);
         if (r > 0.75)
@@ -101,7 +103,7 @@ class Progression
   {
     if (score > 11)
     {
-      if (frameCount % 200 == 0)
+      if (frameCount % frameC == 0)
       {
         r = random(0, 1);
         if (r > 0.8)
@@ -130,6 +132,22 @@ class Progression
           enemies.add(blue);
         }
       }
+    }
+  }
+  
+  void changeFrame()
+  {
+    if (score > 12 && score < 19)
+    {
+      frameC = 150;
+    }
+    else if (score > 19)
+    {
+      frameC = 125;
+    }
+    else if (score > 29)
+    {
+      frameC = 100;
     }
   }
 }

@@ -53,6 +53,7 @@ void draw()
   level.wave3();
   level.wave4();
   level.wave5();
+  level.changeFrame();
   
   println("size of ArrayList = " + enemies.size());
 }

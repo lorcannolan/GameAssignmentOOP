@@ -7,7 +7,23 @@ class Obstacle
   
   Obstacle()
   {
-    this.speed = width * 0.002;
+    if (score < 13)
+    {
+      this.speed = width * 0.002;
+    }
+    else if (score > 13)
+    {
+      this.speed = width * 0.003;
+    }
+    else if (score > 20)
+    {
+      this.speed = width * 0.004;
+    }
+    else if (score > 30)
+    {
+      this.speed = width * 0.005;
+    }
+    
     beyond = check;
   }
   
