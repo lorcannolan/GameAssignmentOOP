@@ -14,7 +14,7 @@ void setup()
   player = new Player(width / 4, height / 2, width / 21, height / 9.6);
   level = new Progression();
   enemies = new ArrayList<Obstacle>();
-  slow = new SecretStuff(width * 1.2, height * 0.6);
+  slow = new SecretStuff(width * 5, height * 0.6);
   court = loadImage("court.png");
   score = 0;
 }
@@ -41,7 +41,7 @@ void draw()
   slow.display();
   slow.update();
 
-  for (int i = enemies.size() -1; i >= 0; i --)
+  for (int i = enemies.size() - 1; i >= 0; i --)
   {
     Obstacle e = enemies.get(i);
     e.display();
@@ -58,6 +58,7 @@ void draw()
   level.changeFrame();
 
   println("size of ArrayList = " + enemies.size());
+  println("enemy frame count = " + level.frameC);
 }
 
 void keyPressed()

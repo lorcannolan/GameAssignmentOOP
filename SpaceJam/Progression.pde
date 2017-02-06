@@ -2,10 +2,12 @@ class Progression
 {
   float r;
   int frameC;
+  int stage, check;
   
   Progression()
   {
-    this.frameC = 200;
+    this.frameC = 210;
+    stage = check;
   }
   
   void wave1()
@@ -137,17 +139,21 @@ class Progression
   
   void changeFrame()
   {
-    if (score > 12 && score < 19)
+    if (score % 5 == 0)
     {
-      frameC = 150;
+      stage = 1;
     }
-    else if (score > 19)
+    else
     {
-      frameC = 125;
+      stage = 0;
+      check = stage;
     }
-    else if (score > 29)
+    
+    // update score
+    if (stage == 1 && stage != check && frameC > 120)
     {
-      frameC = 100;
+      frameC -= 10;
+      check = stage;
     }
   }
 }

@@ -3,6 +3,7 @@ class SecretStuff extends PowerUp
   PImage sStuff;
   int theta;
   boolean angleUp, angleDown;
+  float startPos;
   
   SecretStuff(float x, float y)
   {
@@ -11,6 +12,7 @@ class SecretStuff extends PowerUp
     this.powerupW = (width / 7.45) / 10;
     this.powerupH = (height / 1.4) / 10;
     this.theta = 45;
+    startPos = location.x;
   }
   
   void display()
@@ -57,7 +59,7 @@ class SecretStuff extends PowerUp
     location.x--;
     if (location.x + powerupW < 0)
     {
-      location.x = width * 1.2;
+      location.x = startPos * 0.75;
     }
   }
 }
