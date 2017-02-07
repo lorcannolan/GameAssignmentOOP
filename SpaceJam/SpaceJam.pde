@@ -5,15 +5,20 @@ Player player;
 Progression level;
 SecretStuff quick;
 Carrot jump;
-PImage court, menuImg, menuImg2, left, up, right;
+PImage menuImg, menuImg2, left, up, right;
 PImage[] running = new PImage[2];
+PImage[] court = new PImage[2];
 PFont font, spaceJam;
+PShape arrow, arrow2;
+boolean alive;
+float courtTopLeft, courtTopLeft2;
 
 void setup()
 {
   //size(1000, 750, P2D);
   fullScreen(P2D);
-  menu = 2;
+  menu = 3;
+  alive = true;
   menuImg = loadImage("menuPic.png");
   menuImg.resize(width, height);
   font = createFont("3Dventure", 60);
@@ -26,6 +31,34 @@ void setup()
   up.resize(width / 25, height / 14);
   right = loadImage("right.png");
   right.resize(width / 25, height / 14);
+  
+  //Creating arrow to return 1 menu page
+  arrow = createShape();
+  arrow.beginShape();
+  arrow.noStroke();
+  arrow.fill(12, 143, 247);
+  arrow.vertex(width * 0.06, height * 0.1);
+  arrow.vertex(width * 0.1, height * 0.06);
+  arrow.vertex(width * 0.1, height * 0.09);
+  arrow.vertex(width * 0.14, height * 0.09);
+  arrow.vertex(width * 0.14, height * 0.11);
+  arrow.vertex(width * 0.1, height * 0.11);
+  arrow.vertex(width * 0.1, height * 0.14);
+  arrow.endShape(CLOSE);
+  
+  arrow2 = createShape();
+  arrow2.beginShape();
+  arrow2.noStroke();
+  arrow2.fill(247, 141, 0);
+  arrow2.vertex(width * 0.06, height * 0.1);
+  arrow2.vertex(width * 0.1, height * 0.06);
+  arrow2.vertex(width * 0.1, height * 0.09);
+  arrow2.vertex(width * 0.14, height * 0.09);
+  arrow2.vertex(width * 0.14, height * 0.11);
+  arrow2.vertex(width * 0.1, height * 0.11);
+  arrow2.vertex(width * 0.1, height * 0.14);
+  arrow2.endShape(CLOSE);
+  
   running[0] = loadImage("run1.png");
   running[1] = loadImage("run2.png");
   surfaceHeight = height - height / 20;
@@ -34,7 +67,13 @@ void setup()
   enemies = new ArrayList<Obstacle>();
   quick = new SecretStuff(width * (float)random(2.5, 4.5), height * 0.6);
   jump = new Carrot(width * (float)random(2, 4), height * 0.6);
-  court = loadImage("court.png");
+  for(int i = 0; i < 2; i++)
+  {
+    court[i] = loadImage("court.png");
+    court[i].resize(width, height / 10);
+  }
+  courtTopLeft = 0;
+  courtTopLeft2 = width;
   score = 0;
   sStuffCountdown = 3;
   carrotCountdown = 3;
@@ -132,7 +171,8 @@ void draw()
     image(up, width * 0.225, height * 0.7);
     image(right, width * 0.3, height * 0.7);
     
-    image(quick.sStuff, width * 0.65, height * 0.65, (width / 7.45) / 8, (height / 1.4) / 8);
+    image(quick.sStuff, width * 0.625, height * 0.65, (width / 7.45) / 8, (height / 1.4) / 8);
+    image(jump.carrot, width * 0.725, height * 0.65, (width / 5.5) / 5, (height / 2.52) / 5);
     
     textAlign(LEFT, CENTER);
     textFont(font);
@@ -141,11 +181,47 @@ void draw()
     text("Use the arrow keys to move Michael around the screen to avoid the Monstars.", width * 0.1, height * 0.7, width / 3, height / 3);
     text("Collect Michael's secret stuff to double your speed!\nCollect the carrot to "
           + "jump like Buggs Bunny!", width * 0.55, height * 0.7, width / 2.75, height / 3);
+    
+    fill(23, 250, 157);
+    strokeWeight(3);
+    stroke(247, 141, 0);
+    rect(width * 0.05, height * 0.05, width * 0.1, height * 0.1);
+    shape(arrow, 0, 0);
+    
+    if (mouseX > width * 0.05 && mouseX < width * 0.15
+          && mouseY > height * 0.05 && mouseY < height * 0.15)
+    {
+      fill(12, 143, 247);
+      strokeWeight(3);
+      stroke(23, 250, 157);
+      rect(width * 0.05, height * 0.05, width * 0.1, height * 0.1);
+      shape(arrow2, 0, 0);
+      
+      if (mousePressed)
+      {
+        menu = 1;
+      }
+    }
   }
   else if (menu == 3)
   {
     background(255);
-    image(court, 0, height - height / 10, width, height / 10);
+    if (alive)
+    {
+      image(court[0], courtTopLeft, height - height / 10);
+      image(court[1], courtTopLeft2, height - height / 10);
+      courtTopLeft -= 2.5;
+      courtTopLeft2 -= 2.5;
+      if (courtTopLeft <= 0 - width)
+      {
+        courtTopLeft = width;
+      }
+      
+      if (courtTopLeft2 <= 0 - width)
+      {
+        courtTopLeft2 = width;
+      }
+    }
     fill(0);
     textAlign(CENTER);
     textSize(50);

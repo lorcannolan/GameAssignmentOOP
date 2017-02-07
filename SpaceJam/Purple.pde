@@ -32,7 +32,7 @@ class Purple extends Obstacle
       // to account for the purple monster's triangular shape
       if (player.bottomLeftBody.y >= location.y + (picWidth * 0.2) && player.topLeftBody.x < location.x + picWidth * 0.85)
       {
-        noLoop();
+        alive = false;
       }
     }
   }

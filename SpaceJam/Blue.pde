@@ -33,7 +33,7 @@ class Blue extends Obstacle
       // due to shoulders being lower than head and arms slanted
       if (player.bottomLeftBody.y >= location.y + (picWidth * 0.2) && player.topLeftBody.x < location.x + picWidth * 0.95)
       {
-        noLoop();
+        alive = false;
       }
     }
   }

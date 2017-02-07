@@ -55,7 +55,7 @@ class Red extends Obstacle
     {
       if (player.topLeftBody.x < location.x + picWidth)
       {
-        noLoop();
+        alive = false;
       }
     }
   }

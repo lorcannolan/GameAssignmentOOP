@@ -32,7 +32,7 @@ class Orange extends Obstacle
     {
       if (player.bottomLeftBody.y >= location.y + (picWidth * 0.05) && player.topLeftBody.x < location.x + picWidth)
       {
-        noLoop();
+        alive = false;
       }
     }
   }
