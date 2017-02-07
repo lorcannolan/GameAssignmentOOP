@@ -18,7 +18,6 @@ class Purple extends Obstacle
   void update()
   {
     location.x -= speed;
-    println("purple location.x = " + location.x);
     if (location.x + picWidth <= 0)
     {
       enemies.remove(this);

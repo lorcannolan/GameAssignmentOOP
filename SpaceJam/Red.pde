@@ -19,7 +19,6 @@ class Red extends Obstacle
   void update()
   { 
     location.x -= speed;
-    println("red location.x = " + location.x);
     if (location.x + picWidth <= 0)
     {
       enemies.remove(this);

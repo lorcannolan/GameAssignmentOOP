@@ -18,7 +18,6 @@ class Green extends Obstacle
   void update()
   {
     location.x -= speed;
-    println("green location.x = " + location.x);
     if (location.x + picWidth <= 0)
     {
       enemies.remove(this);
