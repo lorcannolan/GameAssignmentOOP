@@ -5,7 +5,7 @@ Player player;
 Progression level;
 SecretStuff quick;
 Carrot jump;
-PImage court, menuImg, menuImg2;
+PImage court, menuImg, menuImg2, left, up, right;
 PImage[] running = new PImage[2];
 PFont font, spaceJam;
 
@@ -13,13 +13,19 @@ void setup()
 {
   //size(1000, 750, P2D);
   fullScreen(P2D);
-  menu = 0;
+  menu = 2;
   menuImg = loadImage("menuPic.png");
   menuImg.resize(width, height);
   font = createFont("3Dventure", 60);
   spaceJam = createFont("GROBOLD", 60);
   menuImg2 = loadImage("menuPic2.png");
   menuImg2.resize(width, height);
+  left = loadImage("left.png");
+  left.resize(width / 25, height / 14);
+  up = loadImage("up.png");
+  up.resize(width / 25, height / 14);
+  right = loadImage("right.png");
+  right.resize(width / 25, height / 14);
   running[0] = loadImage("run1.png");
   running[1] = loadImage("run2.png");
   surfaceHeight = height - height / 20;
@@ -95,6 +101,11 @@ void draw()
       rect(width / 4 - ((width / 5) / 2), height * 0.85, width / 5, height * 0.1);
       fill(247, 141, 0);
       text("PLAY", width / 4, height * 0.9);
+      
+      if (mousePressed)
+      {
+        menu = 3;
+      }
     }
     
     if (mouseX > width * 0.75 - (width / 5) && mouseX < width * 0.75 + (width / 5)
@@ -106,7 +117,30 @@ void draw()
       rect(width * 0.75 - (width / 5), height * 0.85, (width / 5) * 2, height * 0.1);
       fill(247, 141, 0);
       text("INSTRUCTIONS", width * .75, height * 0.9);
+      
+      if (mousePressed)
+      {
+        menu = 2;
+      }
     }
+  }
+  else if (menu == 2)
+  {
+    background(menuImg2);
+    
+    image(left, width * 0.15, height * 0.7);
+    image(up, width * 0.225, height * 0.7);
+    image(right, width * 0.3, height * 0.7);
+    
+    image(quick.sStuff, width * 0.65, height * 0.65, (width / 7.45) / 8, (height / 1.4) / 8);
+    
+    textAlign(LEFT, CENTER);
+    textFont(font);
+    textSize(width / 45);
+    fill(255);
+    text("Use the arrow keys to move Michael around the screen to avoid the Monstars.", width * 0.1, height * 0.7, width / 3, height / 3);
+    text("Collect Michael's secret stuff to double your speed!\nCollect the carrot to "
+          + "jump like Buggs Bunny!", width * 0.55, height * 0.7, width / 2.75, height / 3);
   }
   else if (menu == 3)
   {
