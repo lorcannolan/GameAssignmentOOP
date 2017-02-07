@@ -1,18 +1,18 @@
-class SecretStuff extends PowerUp
+class Carrot extends PowerUp
 {
-  PImage sStuff;
+  PImage carrot;
   int theta;
   boolean angleUp, angleDown;
   float startPos;
   boolean collected;
   
-  SecretStuff(float x, float y)
+  Carrot(float x, float y)
   {
     location = new PVector(x, y);
-    sStuff = loadImage("secretStuff.png");
-    this.powerupW = (width / 7.45) / 10;
-    this.powerupH = (height / 1.4) / 10;
-    this.theta = 45;
+    carrot = loadImage("carrot.png");
+    this.powerupW = (width / 5.5) / 6;
+    this.powerupH = (height / 2.52) / 6;
+    this.theta = 20;
     startPos = location.x;
     collected = false;
   }
@@ -29,16 +29,16 @@ class SecretStuff extends PowerUp
       rotate(radians(theta));
       
       // and display the image at the origin
-      image(sStuff, -(powerupW / 2), -(powerupH / 2), powerupW, powerupH);
+      image(carrot, -(powerupW / 2), -(powerupH / 2), powerupW, powerupH);
       popMatrix();
       
       // change the pivot angle of the powerup
-      if (theta <= -45)
+      if (theta <= -70)
       {
         angleUp = true;
         angleDown = false;
       }
-      else if (theta >= 45)
+      else if (theta >= 20)
       {
         angleUp = false;
         angleDown = true;

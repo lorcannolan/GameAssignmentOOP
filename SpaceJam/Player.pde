@@ -93,6 +93,16 @@ class Player
     {
       player.speed = width * 0.0003;
     }
+    
+    // if carrot is collected
+    if (jump.collected)
+    {
+      jumpForce = -(height/50);
+    }
+    else
+    {
+      jumpForce = -(height/60);
+    }
   }
   
   // change the velocity values

@@ -50,6 +50,20 @@ class Obstacle
           }
         }
       }
+      
+      // carrot powerup only lasts 3 scores
+      if (jump.collected)
+      {
+        if (carrotCountdown > 0)
+        {
+          carrotCountdown -= 1;
+          if (carrotCountdown == 0)
+          {
+            jump.collected = false;
+            carrotCountdown = 3;
+          }
+        }
+      }
     }
   }
 
