@@ -5,9 +5,9 @@ Player player;
 Progression level;
 SecretStuff quick;
 Carrot jump;
-PImage court, menuImg;
+PImage court, menuImg, menuImg2;
 PImage[] running = new PImage[2];
-PFont font;
+PFont font, spaceJam;
 
 void setup()
 {
@@ -17,7 +17,9 @@ void setup()
   menuImg = loadImage("menuPic.png");
   menuImg.resize(width, height);
   font = createFont("3Dventure", 60);
-  textFont(font);
+  spaceJam = createFont("GROBOLD", 60);
+  menuImg2 = loadImage("menuPic2.png");
+  menuImg2.resize(width, height);
   running[0] = loadImage("run1.png");
   running[1] = loadImage("run2.png");
   surfaceHeight = height - height / 20;
@@ -48,12 +50,62 @@ void draw()
     {
       blink = !blink;
     }
+    
     if (blink)
     {
       textAlign(CENTER);
       fill(255);
+      textFont(font);
       textSize(width / 30);
       text("Press Space To Continue", width / 2, height / 2.75);
+    }
+    
+    if (keyPressed)
+    {
+      if (key == ' ')
+      {
+        menu = 1;
+      }
+    }
+  }
+  else if (menu == 1)
+  {
+    background(menuImg2);
+    textAlign(CENTER, CENTER);
+    textFont(spaceJam);
+    textSize(width / 20);
+    stroke(247, 141, 0);
+    fill(23, 250, 157);
+    strokeWeight(3);
+    rect(width / 4 - ((width / 5) / 2), height * 0.85, width / 5, height * 0.1);
+    fill(12, 143, 247);
+    text("PLAY", width / 4, height * 0.9);
+    stroke(247, 141, 0);
+    fill(23, 250, 157);
+    rect(width * 0.75 - (width / 5), height * 0.85, (width / 5) * 2, height * 0.1);
+    fill(12, 143, 247);
+    text("INSTRUCTIONS", width * .75, height * 0.9);
+    
+    if (mouseX > width / 4 - ((width / 5) / 2) && mouseX < width / 4 + ((width / 5) / 2)
+          && mouseY > height * 0.85 && mouseY < height * 0.95)
+    {
+      stroke(23, 250, 157);
+      fill(12, 143, 247);
+      strokeWeight(3);
+      rect(width / 4 - ((width / 5) / 2), height * 0.85, width / 5, height * 0.1);
+      fill(247, 141, 0);
+      text("PLAY", width / 4, height * 0.9);
+    }
+    
+    if (mouseX > width * 0.75 - (width / 5) && mouseX < width * 0.75 + (width / 5)
+          && mouseY > height * 0.85 && mouseY < height * 0.95)
+    {
+      stroke(23, 250, 157);
+      fill(12, 143, 247);
+      strokeWeight(3);
+      rect(width * 0.75 - (width / 5), height * 0.85, (width / 5) * 2, height * 0.1);
+      fill(247, 141, 0);
+      text("INSTRUCTIONS", width * .75, height * 0.9);
     }
   }
   else if (menu == 3)
