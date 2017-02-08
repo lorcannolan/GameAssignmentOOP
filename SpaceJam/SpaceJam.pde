@@ -1,3 +1,10 @@
+/*
+Author: Lorcan Nolan
+Student Number: C15513717
+
+Space Jam themed side-scroller game
+*/
+
 import processing.sound.*;
 SoundFile music;
 
@@ -173,6 +180,18 @@ void draw()
       if (mousePressed)
       {
         menu = 2;
+      }
+    }
+    fill(255);
+    textFont(font);
+    textAlign(CENTER, CENTER);
+    textSize(width / 30);
+    text("Press Q to Quit", width / 2, height * 0.75);
+    if (keyPressed)
+    {
+      if (key == 'q' || key == 'Q')
+      {
+        exit();
       }
     }
   }
