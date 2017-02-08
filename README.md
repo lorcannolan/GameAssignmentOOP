@@ -1,7 +1,7 @@
 # GameAssignmentOOP
 This GitHub repository is for an assignment from semester 2 of my Object-Oriented Programming module from my second year of college. For this assignment, I was required to make a game which should have “significant amount of clever animation or gameplay" and "multiple modes or screens". A summary of instructions on how to play the game is included in the game.
 
-While brainstorming for this game I decided to try to make a basic platformer game. However I wanted to have a theme to base the game off. Pretty early on I decided to make the theme of the game based on the movie Space Jam. The reason for this was that there are enemies in this movie that I could base my enemies off. Also, the user could play as Michael Jordan and I had ideas for power-ups such as Michael's Secret Stuff to make the user move quicker and a power-up to make the user jump higher.
+While brainstorming for this game I decided to try to make a basic platformer game. However I decided during the making of the game to make a side-scroller instead. I wanted to have a theme to base the game off. Pretty early on I decided to make the theme of the game based on the movie Space Jam. The reason for this was that there are enemies in this movie that I could base my enemies off. Also, the user could play as Michael Jordan and I had ideas for power-ups such as Michael's Secret Stuff to make the user move quicker and a power-up to make the user jump higher.
 
 ->Intro:
 
