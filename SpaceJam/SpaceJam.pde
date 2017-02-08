@@ -1,11 +1,11 @@
 import processing.sound.*;
-SoundFile pumpUp;
+SoundFile music;
 
 Player player;
 Progression level;
 SecretStuff quick;
 Carrot jump;
-PImage menuImg, menuImg2, left, up, right, jumbo;
+PImage menuImg, menuImg2, left, up, right;
 PImage[] running = new PImage[2];
 PImage[] court = new PImage[2];
 PImage[] backg = new PImage[2];
@@ -18,7 +18,7 @@ void setup()
 {
   //size(1000, 750, P2D);
   fullScreen(P2D);
-  menu = 3;
+  menu = 0;
   enemies = new ArrayList<Obstacle>();
   reset();
   menuImg = loadImage("menuPic.png");
@@ -75,9 +75,8 @@ void setup()
     backg[i] = loadImage("background.png");
     backg[i].resize(width, height);
   }
-  jumbo = loadImage("jumbotron.png");
-  jumbo.resize(width / 4, height / 3);
-  pumpUp = new SoundFile(this, "PumpUpTheJam.mp3");
+  music = new SoundFile(this, "PumpUpTheJamMono.mp3");
+  music.loop();
 }
 
 void reset()
@@ -238,7 +237,6 @@ void draw()
     {
       courtTopLeft2 = width;
     }
-    image(jumbo, width / 2.75, 0);
     fill(23, 250, 157);
     textFont(spaceJam);
     textAlign(CENTER);
