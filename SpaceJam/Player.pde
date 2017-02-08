@@ -24,12 +24,15 @@ class Player
     if (location.y + playerHeight == surfaceHeight)
     {
       image(running[counter], location.x, location.y, playerWidth, playerHeight);
-      if (frameCount % 20 == 0)
+      if (alive)
       {
-        counter ++;
-        if (counter>1) 
+        if (frameCount % 20 == 0)
         {
-          counter = 0;
+          counter ++;
+          if (counter>1) 
+          {
+            counter = 0;
+          }
         }
       }
     }
@@ -108,7 +111,10 @@ class Player
   // change the velocity values
   void addVelocity()
   {
-    location.add(velocity);
+    if (alive)
+    {
+      location.add(velocity);
+    }
   }
   
   void assignCollisionPoints()

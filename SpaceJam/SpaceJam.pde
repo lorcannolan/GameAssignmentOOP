@@ -5,9 +5,10 @@ Player player;
 Progression level;
 SecretStuff quick;
 Carrot jump;
-PImage menuImg, menuImg2, left, up, right;
+PImage menuImg, menuImg2, left, up, right, jumbo;
 PImage[] running = new PImage[2];
 PImage[] court = new PImage[2];
+PImage[] backg = new PImage[2];
 PFont font, spaceJam;
 PShape arrow, arrow2;
 boolean alive;
@@ -18,7 +19,8 @@ void setup()
   //size(1000, 750, P2D);
   fullScreen(P2D);
   menu = 3;
-  alive = true;
+  enemies = new ArrayList<Obstacle>();
+  reset();
   menuImg = loadImage("menuPic.png");
   menuImg.resize(width, height);
   font = createFont("3Dventure", 60);
@@ -62,22 +64,34 @@ void setup()
   running[0] = loadImage("run1.png");
   running[1] = loadImage("run2.png");
   surfaceHeight = height - height / 20;
-  player = new Player(width / 4, height / 2, width / 21, height / 9.6);
   level = new Progression();
-  enemies = new ArrayList<Obstacle>();
-  quick = new SecretStuff(width * (float)random(2.5, 4.5), height * 0.6);
-  jump = new Carrot(width * (float)random(2, 4), height * 0.6);
   for(int i = 0; i < 2; i++)
   {
     court[i] = loadImage("court.png");
     court[i].resize(width, height / 10);
   }
+  for(int i = 0; i < 2; i++)
+  {
+    backg[i] = loadImage("background.png");
+    backg[i].resize(width, height);
+  }
+  jumbo = loadImage("jumbotron.png");
+  jumbo.resize(width / 4, height / 3);
+  pumpUp = new SoundFile(this, "PumpUpTheJam.mp3");
+}
+
+void reset()
+{
+  score = 0;
+  player = new Player(width / 4, height / 2, width / 21, height / 9.6);
+  enemies.clear();
   courtTopLeft = 0;
   courtTopLeft2 = width;
-  score = 0;
+  alive = true;
+  quick = new SecretStuff(width * (float)random(2.5, 4.5), height * 0.6);
+  jump = new Carrot(width * (float)random(2, 4), height * 0.6);
   sStuffCountdown = 3;
   carrotCountdown = 3;
-  pumpUp = new SoundFile(this, "PumpUpTheJam.mp3");
 }
 
 int score, sStuffCountdown, carrotCountdown, menu;
@@ -206,26 +220,30 @@ void draw()
   else if (menu == 3)
   {
     background(255);
+    image(backg[0], courtTopLeft, 0);
+    image(backg[1], courtTopLeft2, 0, backg[1].width +2, backg[1].height);
+    image(court[0], courtTopLeft, height - height / 10);
+    image(court[1], courtTopLeft2, height - height / 10, court[1].width +2, court[1].height);
     if (alive)
     {
-      image(court[0], courtTopLeft, height - height / 10);
-      image(court[1], courtTopLeft2, height - height / 10);
       courtTopLeft -= 2.5;
       courtTopLeft2 -= 2.5;
-      if (courtTopLeft <= 0 - width)
-      {
-        courtTopLeft = width;
-      }
-      
-      if (courtTopLeft2 <= 0 - width)
-      {
-        courtTopLeft2 = width;
-      }
     }
-    fill(0);
+    if (courtTopLeft <= 0 - width)
+    {
+      courtTopLeft = width;
+    }
+    
+    if (courtTopLeft2 <= 0 - width)
+    {
+      courtTopLeft2 = width;
+    }
+    image(jumbo, width / 2.75, 0);
+    fill(23, 250, 157);
+    textFont(spaceJam);
     textAlign(CENTER);
-    textSize(50);
-    text("Score: " + score, width/2, height / 20);
+    textSize(width / 27);
+    text("Score: " + score, width/2.05, height / 8);
   
     player.display();
     player.update();
@@ -233,20 +251,29 @@ void draw()
     player.assignCollisionPoints();
     
     quick.display();
-    quick.update();
-    quick.playerCollision();
+    if (alive)
+    {
+      quick.update();
+      quick.playerCollision();
+    }
     
     jump.display();
-    jump.update();
-    jump.playerCollision();
+    if (alive)
+    {
+      jump.update();
+      jump.playerCollision();
+    }
   
     for (int i = enemies.size() - 1; i >= 0; i --)
     {
       Obstacle e = enemies.get(i);
       e.display();
-      e.update();
-      e.updateScore();
-      e.playerCollision();
+      if (alive)
+      {
+        e.update();
+        e.updateScore();
+        e.playerCollision();
+      }
     }
   
     level.wave1();
@@ -255,6 +282,39 @@ void draw()
     level.wave4();
     level.wave5();
     level.changeFrame();
+    
+    if (!alive)
+    {
+      fill(255);
+      textFont(font);
+      textAlign(CENTER, CENTER);
+      textSize(width / 30);
+      text("Press E to return to the menu or R replay", width / 2, height * 0.75);
+      if (keyPressed)
+      {
+        if (key == 'e' || key == 'E')
+        {
+          menu = 1;
+        }
+        else if (key == 'r' || key == 'R')
+        {
+          reset();
+        }
+      }
+      if (frameCount % 30 == 0)
+      {
+        blink = !blink;
+      }
+    
+      if (blink)
+      {
+        fill(255);
+        textFont(font);
+        textAlign(CENTER, CENTER);
+        textSize(width / 15);
+        text("GAME OVER", width / 2, height / 2);
+      }
+    }
   }
 }
 
